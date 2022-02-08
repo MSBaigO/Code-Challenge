@@ -47,7 +47,7 @@ namespace challenge.Controllers
             _logger.LogDebug($"Received employee get request for '{id}'");
 
             var employee = _employeeService.GetById(id);
-
+            Console.WriteLine(employee);
             if (employee == null)
                 return NotFound();
 

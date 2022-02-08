@@ -47,7 +47,7 @@ namespace code_challenge.Controllers
             _logger.LogDebug($"Received compensation get request for '{id}'");
 
             var compensation = _compensationService.GetById(id);
-
+            
             if (compensation == null)
                 return NotFound();
 

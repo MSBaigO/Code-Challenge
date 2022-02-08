@@ -35,6 +35,7 @@ namespace code_challenge.Tests.Integration
             services.AddScoped<ICompensationRepository, CompensationRespository>();
             services.AddTransient<EmployeeDataSeeder>();
             services.AddTransient<CompensationDataSeeder>();
+            services.AddScoped<IReportingStructure, ReportingStructureService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<ICompensationService, CompensationService>();
             services.AddMvc();

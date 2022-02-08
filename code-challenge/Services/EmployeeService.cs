@@ -59,5 +59,34 @@ namespace challenge.Services
 
             return newEmployee;
         }
+
+        public ReportingStructure GetReportingStructureById(string id){
+            var employee = GetById(id);
+            if(employee != null){
+                return new ReportingStructure
+                {
+                    Employee = employee,
+                    NumberOfReports = GetAllDirectReports(employee).Count
+                };
+            }
+            return null;
+        }
+
+        List<string> GetAllDirectReports(Employee employee){
+
+            List<string> directReportIds = new List<string>();
+            Employee selectedDirectReport;
+
+            foreach(Employee e in employee.DirectReports)
+            {
+                selectedDirectReport = _employeeRepository.GetById(e.EmployeeId);
+                directReportIds.Add(selectedDirectReport.EmployeeId);
+
+                if (selectedDirectReport.DirectReports != null && selectedDirectReport.DirectReports.Count > 0)
+                    directReportIds.AddRange(GetAllDirectReports(selectedDirectReport));
+            }
+
+            return directReportIds;
+        }
     }
 }
