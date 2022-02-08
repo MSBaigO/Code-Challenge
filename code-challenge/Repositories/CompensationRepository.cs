@@ -29,15 +29,7 @@ namespace challenge.Repositories
         public Compensation GetById(string id)
         {
             var compensation = _compensationContext.Compensations.AsEnumerable().Where(c => c.EmployeeId == id);
-            foreach(Compensation c in _compensationContext.Compensations){
-                Console.WriteLine("c.id: "+ c.EmployeeId);
-            }
             return compensation.SingleOrDefault(); 
-        }
-
-        public List<Compensation> GetAll()
-        {
-            return _compensationContext.Compensations.ToList();
         }
 
         public Task SaveAsync()

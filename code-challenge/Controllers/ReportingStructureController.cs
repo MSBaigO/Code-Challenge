@@ -21,7 +21,11 @@ namespace challenge.Controllers
             _employeeService = employeeService;
         }
 
-
+        /// <summary>
+        /// On get request returns the reporting structure of employee.
+        /// </summary>
+        /// <param name="id">id of user requesting direct reports</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "getReportingStructureById")]
         public IActionResult GetReportingStructureById(String id){
 

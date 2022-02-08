@@ -22,9 +22,9 @@ namespace code_challenge.Controllers
         }
 
         /// <summary>
-        /// On post request creates an employee.
+        /// On post request creates a  new compensation entry in DB.
         /// </summary>
-        /// <param name="employee">the employee object with its parameters filled</param>
+        /// <param name="compensation">the compensation object with its parameters filled</param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult CreateCompensation([FromBody] Compensation compensation)
