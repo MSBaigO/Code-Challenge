@@ -8,8 +8,8 @@ namespace challenge.Services
 {
     public interface ICompensationService
     {
-        Employee GetById(String id);
-        Compensation Create(Compensation employee);
-        Employee Replace(Compensation originalCompensation, Compensation newCompensation);
+        Compensation GetById(String id);
+        Compensation Create(Compensation compensation);
+        Compensation Replace(Compensation originalCompensation, Compensation newCompensation);
     }
 }

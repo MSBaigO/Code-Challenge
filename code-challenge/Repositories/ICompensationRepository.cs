@@ -6,9 +6,9 @@ namespace challenge.Repositories
 {
     public interface ICompensationRepository
     {
-        Employee GetById(String id);
-        Employee Add(Employee employee);
-        Employee Remove(Employee employee);
+        Compensation GetById(String id);
+        Compensation Add(Compensation compensation);
+        Compensation Remove(Compensation compensation);
         Task SaveAsync();
     }
 }

@@ -21,6 +21,11 @@ namespace challenge.Controllers
             _employeeService = employeeService;
         }
 
+        /// <summary>
+        /// On post request creates an employee.
+        /// </summary>
+        /// <param name="employee">the employee object with its parameters filled</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] Employee employee)
         {
@@ -31,6 +36,11 @@ namespace challenge.Controllers
             return CreatedAtRoute("getEmployeeById", new { id = employee.EmployeeId }, employee);
         }
 
+        /// <summary>
+        /// On get request returns employee when Id is included in request.
+        /// </summary>
+        /// <param name="id">the unique id of employee</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "getEmployeeById")]
         public IActionResult GetEmployeeById(String id)
         {
@@ -44,6 +54,12 @@ namespace challenge.Controllers
             return Ok(employee);
         }
 
+        /// <summary>
+        /// On put request updates an employee with given employee id.
+        /// </summary>
+        /// <param name="id">employee id of user to update</param>
+        /// <param name="newEmployee">the updated employee object</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult ReplaceEmployee(String id, [FromBody]Employee newEmployee)
         {

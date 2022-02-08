@@ -11,35 +11,43 @@ namespace challenge.Repositories
 {
     public class CompensationRespository : ICompensationRepository
     {
-        private readonly EmployeeContext _employeeContext;
+        private readonly CompensationContext _compensationContext;
         private readonly ILogger<ICompensationRepository> _logger;
 
-        public CompensationRespository(ILogger<ICompensationRepository> logger, EmployeeContext employeeContext)
+        public CompensationRespository(ILogger<ICompensationRepository> logger, CompensationContext compensationContext)
         {
-            _employeeContext = employeeContext;
+            _compensationContext = compensationContext;
             _logger = logger;
         }
 
-        public Employee Add(Employee employee)
+        public Compensation Add(Compensation compensation)
         {
-            employee.EmployeeId = Guid.NewGuid().ToString();
-            _employeeContext.Employees.Add(employee);
-            return employee;
+            _compensationContext.Compensations.Add(compensation);
+            return compensation;
         }
 
-        public Employee GetById(string id)
+        public Compensation GetById(string id)
         {
-            return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
+            var compensation = _compensationContext.Compensations.AsEnumerable().Where(c => c.EmployeeId == id);
+            foreach(Compensation c in _compensationContext.Compensations){
+                Console.WriteLine("c.id: "+ c.EmployeeId);
+            }
+            return compensation.SingleOrDefault(); 
+        }
+
+        public List<Compensation> GetAll()
+        {
+            return _compensationContext.Compensations.ToList();
         }
 
         public Task SaveAsync()
         {
-            return _employeeContext.SaveChangesAsync();
+            return _compensationContext.SaveChangesAsync();
         }
 
-        public Employee Remove(Employee employee)
+        public Compensation Remove(Compensation compensation)
         {
-            return _employeeContext.Remove(employee).Entity;
+            return _compensationContext.Remove(compensation).Entity;
         }
     }
 }
